@@ -537,7 +537,7 @@ function App() {
                 <a href="https://www.linkedin.com/in/elijah-richter-1a6830275/" target="_blank" rel="noreferrer" className="rounded-xl border border-slate-300 bg-white/70 px-4 py-2 text-sm font-semibold hover:border-mint-400 hover:text-mint-600 dark:border-slate-600 dark:bg-slate-800/70 dark:hover:text-mint-300">
                   LinkedIn
                 </a>
-                <a href="mailto:hello@low-voltage.xyz" className="rounded-xl bg-mint-500 px-4 py-2 text-sm font-semibold text-white hover:bg-mint-600">
+                <a href="mailto:elirichter77@gmail.com" className="rounded-xl bg-mint-500 px-4 py-2 text-sm font-semibold text-white hover:bg-mint-600">
                   Email Directly
                 </a>
               </div>

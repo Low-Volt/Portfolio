@@ -10,7 +10,6 @@ dotenv.config();
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
-console.log("Turnstile site key:", process.env.TURNSTILE_SITE_KEY);
 
 app.set("trust proxy", 1);
 
@@ -51,6 +50,7 @@ const payloadSchema = z.object({
 });
 
 app.get("/api/contact-config", (_req, res) => {
+  console.log("TURNSTILE_SITE_KEY:", process.env.TURNSTILE_SITE_KEY);
   const siteKey = process.env.TURNSTILE_SITE_KEY || "";
   res.set("Cache-Control", "no-store");
   res.json({ turnstileSiteKey: siteKey });
