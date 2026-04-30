@@ -1,0 +1,98 @@
+<svg width="900" height="580" viewBox="0 0 900 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nb" x1="0" y1="0" x2="900" y2="580" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#EDF2F7"/>
+      <stop offset="1" stop-color="#D5DDE6"/>
+    </linearGradient>
+    <radialGradient id="center-glow" cx="50%" cy="50%" r="35%" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2FD4A9" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#2FD4A9" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="ns" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#00000020"/>
+    </filter>
+    <filter id="node-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="900" height="580" rx="36" fill="url(#nb)"/>
+  <rect width="900" height="580" rx="36" fill="url(#center-glow)"/>
+
+  <!-- Ambient orb top right -->
+  <circle cx="800" cy="100" r="90" fill="#2FD4A9" fill-opacity="0.12"/>
+  <!-- Ambient orb bottom left -->
+  <circle cx="110" cy="480" r="70" fill="#98A4B2" fill-opacity="0.17"/>
+
+  <!-- Center hub node -->
+  <circle cx="450" cy="290" r="52" fill="white" fill-opacity="0.9" filter="url(#ns)"/>
+  <circle cx="450" cy="290" r="38" fill="#2FD4A9"/>
+  <circle cx="450" cy="290" r="24" fill="white" fill-opacity="0.92"/>
+  <text x="450" y="296" text-anchor="middle" fill="#2FD4A9" font-size="13" font-weight="800" font-family="sans-serif">ER</text>
+
+  <!-- Satellite node positions:
+       A: top-left      B: top        C: top-right
+       D: right         E: bottom-right F: bottom  G: bottom-left  H: left -->
+
+  <!-- Node A – top-left (140, 120) -->
+  <line x1="450" y1="290" x2="140" y2="120" stroke="#2FD4A9" stroke-width="2" stroke-opacity="0.45" stroke-dasharray="7 5"/>
+  <circle cx="140" cy="120" r="34" fill="white" fill-opacity="0.82" filter="url(#ns)"/>
+  <circle cx="140" cy="120" r="22" fill="#2FD4A9" fill-opacity="0.22"/>
+  <text x="140" y="116" text-anchor="middle" fill="#2FD4A9" font-size="10" font-weight="700" font-family="sans-serif">GitHub</text>
+  <text x="140" y="129" text-anchor="middle" fill="#555E6A" font-size="9" font-family="sans-serif">Low-Volt</text>
+
+  <!-- Node B – top (450, 88) -->
+  <line x1="450" y1="290" x2="450" y2="88" stroke="#98A4B2" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="7 5"/>
+  <circle cx="450" cy="88" r="34" fill="white" fill-opacity="0.82" filter="url(#ns)"/>
+  <circle cx="450" cy="88" r="22" fill="#98A4B2" fill-opacity="0.22"/>
+  <text x="450" y="84" text-anchor="middle" fill="#555E6A" font-size="10" font-weight="700" font-family="sans-serif">LinkedIn</text>
+  <text x="450" y="97" text-anchor="middle" fill="#555E6A" font-size="9" font-family="sans-serif">Connect</text>
+
+  <!-- Node C – top-right (760, 120) -->
+  <line x1="450" y1="290" x2="760" y2="120" stroke="#2FD4A9" stroke-width="2" stroke-opacity="0.45" stroke-dasharray="7 5"/>
+  <circle cx="760" cy="120" r="34" fill="white" fill-opacity="0.82" filter="url(#ns)"/>
+  <circle cx="760" cy="120" r="22" fill="#2FD4A9" fill-opacity="0.22"/>
+  <text x="760" y="116" text-anchor="middle" fill="#2FD4A9" font-size="10" font-weight="700" font-family="sans-serif">Email</text>
+  <text x="760" y="129" text-anchor="middle" fill="#555E6A" font-size="9" font-family="sans-serif">Direct</text>
+
+  <!-- Node D – right (820, 290) -->
+  <line x1="450" y1="290" x2="820" y2="290" stroke="#98A4B2" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="7 5"/>
+  <circle cx="820" cy="290" r="34" fill="white" fill-opacity="0.82" filter="url(#ns)"/>
+  <circle cx="820" cy="290" r="22" fill="#98A4B2" fill-opacity="0.22"/>
+  <text x="820" y="286" text-anchor="middle" fill="#555E6A" font-size="10" font-weight="700" font-family="sans-serif">Resume</text>
+  <text x="820" y="299" text-anchor="middle" fill="#555E6A" font-size="9" font-family="sans-serif">PDF</text>
+
+  <!-- Node E – bottom-right (760, 460) -->
+  <line x1="450" y1="290" x2="760" y2="460" stroke="#2FD4A9" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="7 5"/>
+  <circle cx="760" cy="460" r="34" fill="white" fill-opacity="0.82" filter="url(#ns)"/>
+  <circle cx="760" cy="460" r="22" fill="#2FD4A9" fill-opacity="0.22"/>
+  <text x="760" y="456" text-anchor="middle" fill="#2FD4A9" font-size="10" font-weight="700" font-family="sans-serif">Projects</text>
+  <text x="760" y="469" text-anchor="middle" fill="#555E6A" font-size="9" font-family="sans-serif">Portfolio</text>
+
+  <!-- Node F – bottom (450, 492) -->
+  <line x1="450" y1="290" x2="450" y2="492" stroke="#98A4B2" stroke-width="2" stroke-opacity="0.38" stroke-dasharray="7 5"/>
+  <circle cx="450" cy="492" r="34" fill="white" fill-opacity="0.82" filter="url(#ns)"/>
+  <circle cx="450" cy="492" r="22" fill="#98A4B2" fill-opacity="0.22"/>
+  <text x="450" y="488" text-anchor="middle" fill="#555E6A" font-size="10" font-weight="700" font-family="sans-serif">Skills</text>
+  <text x="450" y="501" text-anchor="middle" fill="#555E6A" font-size="9" font-family="sans-serif">Tech Stack</text>
+
+  <!-- Node G – bottom-left (140, 460) -->
+  <line x1="450" y1="290" x2="140" y2="460" stroke="#2FD4A9" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="7 5"/>
+  <circle cx="140" cy="460" r="34" fill="white" fill-opacity="0.82" filter="url(#ns)"/>
+  <circle cx="140" cy="460" r="22" fill="#2FD4A9" fill-opacity="0.22"/>
+  <text x="140" y="456" text-anchor="middle" fill="#2FD4A9" font-size="10" font-weight="700" font-family="sans-serif">Open</text>
+  <text x="140" y="469" text-anchor="middle" fill="#555E6A" font-size="9" font-family="sans-serif">Source</text>
+
+  <!-- Node H – left (80, 290) -->
+  <line x1="450" y1="290" x2="80" y2="290" stroke="#98A4B2" stroke-width="2" stroke-opacity="0.38" stroke-dasharray="7 5"/>
+  <circle cx="80" cy="290" r="34" fill="white" fill-opacity="0.82" filter="url(#ns)"/>
+  <circle cx="80" cy="290" r="22" fill="#98A4B2" fill-opacity="0.22"/>
+  <text x="80" y="286" text-anchor="middle" fill="#555E6A" font-size="10" font-weight="700" font-family="sans-serif">VPS</text>
+  <text x="80" y="299" text-anchor="middle" fill="#555E6A" font-size="9" font-family="sans-serif">Dokploy</text>
+
+  <!-- Pulse rings on center hub -->
+  <circle cx="450" cy="290" r="65"  fill="none" stroke="#2FD4A9" stroke-width="1.5" stroke-opacity="0.25"/>
+  <circle cx="450" cy="290" r="85"  fill="none" stroke="#2FD4A9" stroke-width="1"   stroke-opacity="0.14"/>
+  <circle cx="450" cy="290" r="108" fill="none" stroke="#2FD4A9" stroke-width="0.8" stroke-opacity="0.08"/>
+</svg>

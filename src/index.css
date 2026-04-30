@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: #f3f5f7;
+}
+
+:root[data-theme="night"] {
+  color-scheme: dark;
+  --bg: #0f1318;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* ─── Custom Scrollbar ─────────────────────────────────────────────────── */
+.custom-scrollbar {
+  position: fixed;
+  top: 96px;
+  right: 8px;
+  bottom: 10px;
+  width: 8px;
+  z-index: 995;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.custom-scrollbar.is-visible {
+  opacity: 1;
+}
+
+.custom-scrollbar-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.custom-scrollbar-thumb {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  min-height: 36px;
+  border-radius: 999px;
+  background: rgba(47, 212, 169, 0.60);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  cursor: grab;
+  transition: background 220ms ease;
+}
+
+.custom-scrollbar-thumb:active {
+  cursor: grabbing;
+  background: rgba(47, 212, 169, 0.85);
+}
+
+:root[data-theme="night"] .custom-scrollbar-thumb {
+  background: rgba(47, 212, 169, 0.72);
+}
+
+:root[data-theme="night"] .custom-scrollbar-thumb:active {
+  background: rgba(47, 212, 169, 0.95);
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  background: var(--bg);
+}
+
+.bg-app {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(47, 212, 169, 0.17), transparent 40%),
+    radial-gradient(circle at 88% 8%, rgba(67, 162, 255, 0.11), transparent 35%),
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.6), transparent 45%),
+    var(--bg);
+}
+
+:root[data-theme="night"] .bg-app {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(47, 212, 169, 0.2), transparent 38%),
+    radial-gradient(circle at 85% 10%, rgba(120, 148, 182, 0.16), transparent 36%),
+    radial-gradient(circle at 50% 100%, rgba(18, 26, 36, 0.8), transparent 48%),
+    var(--bg);
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/* ─── Reach Lights ────────────────────────────────────────────────────── */
+.reach-light {
+  position: fixed;
+  border-radius: 999px;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.reach-light-1 {
+  width: 38rem;
+  height: 38rem;
+  top: -8rem;
+  left: -10rem;
+  background: radial-gradient(circle, rgba(47, 212, 169, 0.22) 0%, transparent 70%);
+  filter: blur(55px);
+  animation: reach-drift-a 26s ease-in-out infinite, reach-fade 26s ease-in-out infinite;
+}
+
+.reach-light-2 {
+  width: 30rem;
+  height: 30rem;
+  top: 30%;
+  right: -8rem;
+  background: radial-gradient(circle, rgba(47, 212, 169, 0.18) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: reach-drift-b 32s ease-in-out infinite, reach-fade 32s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+.reach-light-3 {
+  width: 26rem;
+  height: 26rem;
+  bottom: 10%;
+  left: 20%;
+  background: radial-gradient(circle, rgba(47, 212, 169, 0.14) 0%, transparent 70%);
+  filter: blur(50px);
+  animation: reach-drift-c 22s ease-in-out infinite, reach-fade 22s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+.reach-light-4 {
+  width: 20rem;
+  height: 20rem;
+  top: 55%;
+  left: 50%;
+  background: radial-gradient(circle, rgba(140, 155, 170, 0.16) 0%, transparent 70%);
+  filter: blur(48px);
+  animation: reach-drift-a 28s ease-in-out infinite, reach-fade 28s ease-in-out infinite;
+  animation-delay: -14s;
+}
+
+.reach-light-5 {
+  width: 24rem;
+  height: 24rem;
+  top: 5%;
+  right: 25%;
+  background: radial-gradient(circle, rgba(140, 155, 170, 0.13) 0%, transparent 70%);
+  filter: blur(52px);
+  animation: reach-drift-b 20s ease-in-out infinite, reach-fade 20s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.reach-light-6 {
+  width: 32rem;
+  height: 32rem;
+  bottom: -6rem;
+  right: 10%;
+  background: radial-gradient(circle, rgba(47, 212, 169, 0.12) 0%, transparent 70%);
+  filter: blur(64px);
+  animation: reach-drift-c 35s ease-in-out infinite, reach-fade 35s ease-in-out infinite;
+  animation-delay: -18s;
+}
+
+@keyframes reach-drift-a {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(24px, -18px) scale(1.06); }
+  66%       { transform: translate(-12px, 22px) scale(0.96); }
+}
+
+@keyframes reach-drift-b {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  40%       { transform: translate(-20px, 16px) scale(1.05); }
+  70%       { transform: translate(18px, -20px) scale(0.97); }
+}
+
+@keyframes reach-drift-c {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  30%       { transform: translate(16px, 24px) scale(1.04); }
+  65%       { transform: translate(-22px, -10px) scale(1.02); }
+}
+
+@keyframes reach-fade {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* ─── Card hover mint glow ─────────────────────────────────────────────── */
+.card-hover {
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.3s ease;
+}
+
+.card-hover:hover {
+  border-color: rgba(47, 212, 169, 0.55) !important;
+  box-shadow:
+    0 0 0 1px rgba(47, 212, 169, 0.2),
+    0 22px 48px -16px rgba(47, 212, 169, 0.22),
+    0 8px 20px -8px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Legacy drift (hero ambient kept for backward compat) ─────────────── */
+.hero-ambient {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: 0.56;
+  animation: drift 11s ease-in-out infinite;
+}
+
+.hero-ambient-a {
+  width: 22rem;
+  height: 22rem;
+  background: linear-gradient(135deg, rgba(47, 212, 169, 0.3), rgba(168, 245, 226, 0.22));
+  top: -6rem;
+  right: -7rem;
+}
+
+.hero-ambient-b {
+  width: 18rem;
+  height: 18rem;
+  background: linear-gradient(135deg, rgba(137, 146, 161, 0.24), rgba(47, 212, 169, 0.12));
+  bottom: 8rem;
+  left: -5rem;
+  animation-delay: 1.3s;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) scale(1.04);
+  }
+}
