@@ -28,3 +28,8 @@ yarn-error.log*
 
 # Misc
 *.local
+
+# Legacy / unused assets (keep local, not on repo)
+public/images/hero-grid.svg
+public/images/server-rack.svg
+public/images/Volt-Scheduler.png
