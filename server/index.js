@@ -51,6 +51,7 @@ const payloadSchema = z.object({
 
 app.get("/api/contact-config", (_req, res) => {
   const siteKey = process.env.TURNSTILE_SITE_KEY || "";
+  res.set("Cache-Control", "no-store");
   res.json({ turnstileSiteKey: siteKey });
 });
 
