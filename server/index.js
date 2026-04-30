@@ -19,7 +19,7 @@ app.use(
       useDefaults: true,
       directives: {
         "default-src": ["'self'"],
-        "connect-src": ["'self'"],
+        "connect-src": ["'self'", "https://challenges.cloudflare.com"],
         "script-src": ["'self'", "https://challenges.cloudflare.com"],
         "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         "font-src": ["'self'", "https://fonts.gstatic.com", "data:"],

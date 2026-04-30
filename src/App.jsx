@@ -266,7 +266,13 @@ function App() {
 
     const existingScript = document.querySelector('script[src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"]');
     if (existingScript) {
-      renderTurnstile();
+      if (window.turnstile) {
+        renderTurnstile();
+      } else {
+        const handleLoad = () => renderTurnstile();
+        existingScript.addEventListener("load", handleLoad, { once: true });
+        return () => existingScript.removeEventListener("load", handleLoad);
+      }
       return;
     }
 
