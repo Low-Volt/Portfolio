@@ -144,4 +144,6 @@ app.get("*", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Portfolio server listening on port ${port}`);
+  console.log('All environment variables at startup:');
+  console.log(process.env);
 });
