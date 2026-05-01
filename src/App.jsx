@@ -441,7 +441,7 @@ function App() {
               <a href="#projects" className="rounded-xl bg-mint-500 px-5 py-3 text-sm font-bold text-white shadow-glow transition hover:bg-mint-600">
                 View My Work
               </a>
-              <a href="https://raw.githubusercontent.com/Low-Volt/Portfolio/main/document/Elijah%20Richter%20Resume%20May%202026.pdf" className="rounded-xl border border-slate-300 bg-white/80 px-5 py-3 text-sm font-bold text-slate-700 transition hover:border-mint-400 hover:text-mint-600 dark:border-slate-600 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:text-mint-300" target="_blank" rel="noreferrer">
+              <a href="/Elijah Richter Resume May.pdf" className="rounded-xl border border-slate-300 bg-white/80 px-5 py-3 text-sm font-bold text-slate-700 transition hover:border-mint-400 hover:text-mint-600 dark:border-slate-600 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:text-mint-300" target="_blank" rel="noreferrer">
                 Resume
               </a>
             </div>
@@ -489,12 +489,12 @@ function App() {
                     <h3 className="font-display text-2xl font-semibold">{project.title}</h3>
                     <div className="flex gap-2">
                       {project.github && (
-                        <a href={project.github} target="_blank" rel="noreferrer" className="rounded-lg border border-slate-300 px-3 py-1 text-xs font-bold uppercase tracking-wide hover:border-mint-400 hover:text-mint-600 dark:border-slate-600 dark:hover:text-mint-300">
+                        <a href={project.github} target="_blank" rel="noreferrer" className="rounded-lg border border-slate-300 px-4 py-2 text-xs font-bold uppercase tracking-wide hover:border-mint-400 hover:text-mint-600 dark:border-slate-600 dark:hover:text-mint-300">
                           GitHub
                         </a>
                       )}
                       {project.live && (
-                        <a href={project.live} target="_blank" rel="noreferrer" className="rounded-lg bg-mint-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white hover:bg-mint-600">
+                        <a href={project.live} target="_blank" rel="noreferrer" className="rounded-lg bg-mint-500 px-4 py-2 text-xs font-bold uppercase tracking-wide text-white hover:bg-mint-600">
                           Live App
                         </a>
                       )}
