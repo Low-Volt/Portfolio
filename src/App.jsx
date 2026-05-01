@@ -54,7 +54,7 @@ const skillGroups = [
     items: [
       "CSS Keyframe Animations",
       "Custom Scrollbar",
-      "Cloudflare Turnstile CAPTCHA",
+      "Google reCAPTCHA",
       "Gradient & Visual Layering",
       "SVG Illustration",
       "Accessible Markup (ARIA)"
@@ -87,7 +87,7 @@ const skillGroups = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState("light");
-  const [turnstileSiteKey, setTurnstileSiteKey] = useState("");
+  const [recaptchaSiteKey, setRecaptchaSiteKey] = useState("");
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -97,8 +97,8 @@ function App() {
   const [captchaToken, setCaptchaToken] = useState("");
   const [submitStatus, setSubmitStatus] = useState({ type: "idle", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const turnstileRef = useRef(null);
-  const turnstileWidgetId = useRef(null);
+  const recaptchaRef = useRef(null);
+  const recaptchaWidgetId = useRef(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("portfolio-theme");
@@ -228,9 +228,9 @@ function App() {
           return;
         }
         const json = await response.json();
-        setTurnstileSiteKey(json.turnstileSiteKey || "");
+        setRecaptchaSiteKey(json.recaptchaSiteKey || "");
       } catch (_error) {
-        setTurnstileSiteKey("");
+        setRecaptchaSiteKey("");
       }
     };
 
@@ -238,22 +238,22 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!turnstileSiteKey || !turnstileRef.current) {
+    if (!recaptchaSiteKey || !recaptchaRef.current) {
       return;
     }
 
-    const renderTurnstile = () => {
-      if (!window.turnstile || !turnstileRef.current) {
+    const renderRecaptcha = () => {
+      if (!window.grecaptcha || !recaptchaRef.current) {
         return;
       }
 
-      if (turnstileWidgetId.current !== null) {
-        window.turnstile.remove(turnstileWidgetId.current);
-        turnstileWidgetId.current = null;
+      if (recaptchaWidgetId.current !== null) {
+        recaptchaRef.current.innerHTML = "";
+        recaptchaWidgetId.current = null;
       }
 
-      turnstileWidgetId.current = window.turnstile.render(turnstileRef.current, {
-        sitekey: turnstileSiteKey,
+      recaptchaWidgetId.current = window.grecaptcha.render(recaptchaRef.current, {
+        sitekey: recaptchaSiteKey,
         theme: theme === "night" ? "dark" : "light",
         callback: (token) => {
           setCaptchaToken(token);
@@ -264,12 +264,12 @@ function App() {
       });
     };
 
-    const existingScript = document.querySelector('script[src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"]');
+    const existingScript = document.querySelector('script[src="https://www.google.com/recaptcha/api.js?render=explicit"]');
     if (existingScript) {
-      if (window.turnstile) {
-        renderTurnstile();
+      if (window.grecaptcha) {
+        renderRecaptcha();
       } else {
-        const handleLoad = () => renderTurnstile();
+        const handleLoad = () => renderRecaptcha();
         existingScript.addEventListener("load", handleLoad, { once: true });
         return () => existingScript.removeEventListener("load", handleLoad);
       }
@@ -277,16 +277,16 @@ function App() {
     }
 
     const script = document.createElement("script");
-    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    script.src = "https://www.google.com/recaptcha/api.js?render=explicit";
     script.async = true;
     script.defer = true;
-    script.onload = renderTurnstile;
+    script.onload = renderRecaptcha;
     document.body.appendChild(script);
 
     return () => {
       script.onload = null;
     };
-  }, [turnstileSiteKey, theme]);
+  }, [recaptchaSiteKey, theme]);
 
   const themeLabel = useMemo(
     () => (theme === "light" ? "Switch to night mode" : "Switch to light mode"),
@@ -334,8 +334,8 @@ function App() {
       setFormState({ name: "", email: "", message: "", company: "" });
       setSubmitStatus({ type: "success", message: "Message sent successfully. Thank you!" });
       setCaptchaToken("");
-      if (window.turnstile && turnstileWidgetId.current !== null) {
-        window.turnstile.reset(turnstileWidgetId.current);
+      if (window.grecaptcha && recaptchaWidgetId.current !== null) {
+        window.grecaptcha.reset(recaptchaWidgetId.current);
       }
     } catch (error) {
       setSubmitStatus({ type: "error", message: error.message || "Could not send right now." });
@@ -594,15 +594,15 @@ function App() {
                   <input type="text" name="company" value={formState.company} onChange={handleInputChange} autoComplete="off" tabIndex={-1} />
                 </label>
 
-                {turnstileSiteKey ? (
-                  <div ref={turnstileRef} />
+                {recaptchaSiteKey ? (
+                  <div ref={recaptchaRef} />
                 ) : (
-                  <p className="text-sm text-amber-600 dark:text-amber-400">Captcha is not configured yet. Add Turnstile keys on the server.</p>
+                  <p className="text-sm text-amber-600 dark:text-amber-400">Captcha is not configured yet. Add Google reCAPTCHA keys on the server.</p>
                 )}
 
                 <button
                   type="submit"
-                  disabled={isSubmitting || !turnstileSiteKey}
+                  disabled={isSubmitting || !recaptchaSiteKey}
                   className="w-full rounded-xl bg-mint-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-mint-600 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}

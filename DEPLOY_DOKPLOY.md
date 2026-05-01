@@ -28,8 +28,8 @@ Use these values:
 Set these in Dokploy app environment settings:
 
 - `CONTACT_WEBHOOK_URL` = your webhook destination URL
-- `TURNSTILE_SITE_KEY` = Cloudflare Turnstile site key
-- `TURNSTILE_SECRET_KEY` = Cloudflare Turnstile secret key
+- `RECAPTCHA_SITE_KEY` = Google reCAPTCHA site key
+- `RECAPTCHA_SECRET_KEY` = Google reCAPTCHA secret key
 - `PORT` = `3000`
 
 ## 5. Domain + HTTPS
@@ -50,8 +50,8 @@ Set these in Dokploy app environment settings:
 docker build -t portfolio-2 .
 docker run --rm -p 8080:3000 \
 	-e CONTACT_WEBHOOK_URL="https://your-webhook-endpoint" \
-	-e TURNSTILE_SITE_KEY="your_turnstile_site_key" \
-	-e TURNSTILE_SECRET_KEY="your_turnstile_secret_key" \
+	-e RECAPTCHA_SITE_KEY="your_recaptcha_site_key" \
+	-e RECAPTCHA_SECRET_KEY="your_recaptcha_secret_key" \
 	portfolio-2
 ```
 

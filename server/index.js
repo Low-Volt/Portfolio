@@ -19,12 +19,12 @@ app.use(
       useDefaults: true,
       directives: {
         "default-src": ["'self'"],
-        "connect-src": ["'self'", "https://challenges.cloudflare.com"],
-        "script-src": ["'self'", "https://challenges.cloudflare.com"],
+        "connect-src": ["'self'"],
+        "script-src": ["'self'", "https://www.google.com", "https://www.gstatic.com"],
         "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         "font-src": ["'self'", "https://fonts.gstatic.com", "data:"],
         "img-src": ["'self'", "data:", "https:"],
-        "frame-src": ["'self'", "https://challenges.cloudflare.com"]
+        "frame-src": ["'self'", "https://www.google.com"]
       }
     },
     crossOriginResourcePolicy: { policy: "cross-origin" }
@@ -50,10 +50,9 @@ const payloadSchema = z.object({
 });
 
 app.get("/api/contact-config", (_req, res) => {
-  console.log("TURNSTILE_SITE_KEY:", process.env.TURNSTILE_SITE_KEY);
-  const siteKey = process.env.TURNSTILE_SITE_KEY || "";
+  const siteKey = process.env.RECAPTCHA_SITE_KEY || "";
   res.set("Cache-Control", "no-store");
-  res.json({ turnstileSiteKey: siteKey });
+  res.json({ recaptchaSiteKey: siteKey });
 });
 
 app.post("/api/contact", contactRateLimit, async (req, res) => {
@@ -67,21 +66,21 @@ app.post("/api/contact", contactRateLimit, async (req, res) => {
     return res.status(200).json({ ok: true });
   }
 
-  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+  const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
   const webhookUrl = process.env.CONTACT_WEBHOOK_URL;
 
-  if (!turnstileSecret || !webhookUrl) {
+  if (!recaptchaSecret || !webhookUrl) {
     return res.status(500).json({ error: "Server contact configuration is incomplete." });
   }
 
   const verificationBody = new URLSearchParams({
-    secret: turnstileSecret,
+    secret: recaptchaSecret,
     response: captchaToken,
     remoteip: req.ip
   });
 
   try {
-    const captchaRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    const captchaRes = await fetch("https://www.google.com/recaptcha/api/siteverify", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"

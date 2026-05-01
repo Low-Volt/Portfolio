@@ -1,6 +1,6 @@
 # Elijah Richter — Portfolio 2.0
 
-Personal portfolio site built with React, Vite, and Tailwind CSS. Features a persistent light/night theme with a mint accent colour, animated background effects, a secure contact form backed by Cloudflare Turnstile CAPTCHA, and a Dockerised deployment pipeline ready for Dokploy.
+Personal portfolio site built with React, Vite, and Tailwind CSS. Features a persistent light/night theme with a mint accent colour, animated background effects, a secure contact form backed by Google reCAPTCHA, and a Dockerised deployment pipeline ready for Dokploy.
 
 **Live:** [low-voltage.xyz](https://low-voltage.xyz)
 
@@ -13,7 +13,7 @@ Personal portfolio site built with React, Vite, and Tailwind CSS. Features a per
 | Frontend | React 18, Vite 5, Tailwind CSS 3 |
 | Styling | PostCSS, Autoprefixer, Space Grotesk / Manrope fonts |
 | Backend | Node.js, Express 4, Helmet, express-rate-limit, Zod |
-| CAPTCHA | Cloudflare Turnstile (server-side verified) |
+| CAPTCHA | Google reCAPTCHA v2 (server-side verified) |
 | Notifications | Discord webhook |
 | Deployment | Docker (multi-stage), Dokploy, VPS |
 
@@ -37,8 +37,8 @@ Open `.env` and fill in the three required values:
 
 ```
 PORT=3000
-TURNSTILE_SITE_KEY=your_site_key
-TURNSTILE_SECRET_KEY=your_secret_key
+RECAPTCHA_SITE_KEY=your_site_key
+RECAPTCHA_SECRET_KEY=your_secret_key
 CONTACT_WEBHOOK_URL=your_discord_or_webhook_url
 ```
 
@@ -73,8 +73,8 @@ npm run start   # serves dist/ via Express on port 3000
 2. In Dokploy: **New App → Dockerfile** — set build path to `./Dockerfile`, port `3000`.
 3. Add environment variables in the Dokploy dashboard:
    - `CONTACT_WEBHOOK_URL`
-   - `TURNSTILE_SITE_KEY`
-   - `TURNSTILE_SECRET_KEY`
+   - `RECAPTCHA_SITE_KEY`
+   - `RECAPTCHA_SECRET_KEY`
    - `PORT=3000`
 4. Attach your domain and enable SSL.
 
@@ -83,7 +83,7 @@ npm run start   # serves dist/ via Express on port 3000
 ## Contact Form Security
 
 - Rate limited to 8 submissions per 15 minutes per IP
-- Cloudflare Turnstile token verified server-side (secret key never exposed to browser)
+- Google reCAPTCHA token verified server-side (secret key never exposed to browser)
 - Zod schema validates all fields before processing
 - Honeypot field silently discards bot submissions
 - Helmet sets strict Content Security Policy headers
