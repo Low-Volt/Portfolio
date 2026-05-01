@@ -52,7 +52,11 @@ const payloadSchema = z.object({
 app.get("/api/contact-config", (_req, res) => {
   const siteKey = process.env.RECAPTCHA_SITE_KEY || "";
   res.set("Cache-Control", "no-store");
-  res.json({ recaptchaSiteKey: siteKey });
+  res.json({
+    recaptchaSiteKey: siteKey,
+    captchaConfigured: Boolean(siteKey),
+    runtime: "node-express"
+  });
 });
 
 app.post("/api/contact", contactRateLimit, async (req, res) => {
@@ -143,6 +147,5 @@ app.get("*", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Portfolio server listening on port ${port}`);
-  console.log('All environment variables at startup:');
-  console.log(process.env);
+  console.log(`reCAPTCHA configured: ${Boolean(process.env.RECAPTCHA_SITE_KEY)}`);
 });
