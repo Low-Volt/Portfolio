@@ -299,7 +299,7 @@ function App() {
     return () => {
       script.onload = null;
     };
-  }, [recaptchaSiteKey, theme]);
+  }, [recaptchaSiteKey]);
 
   const themeLabel = useMemo(
     () => (theme === "light" ? "Switch to night mode" : "Switch to light mode"),
